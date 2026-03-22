@@ -72,18 +72,12 @@ class Foods{
     li.appendChild(nameSpan)
 
     return li
-
   }
-
 
   _render() {
 
-    this._root.addEventListener("click", event => {
-      const { target } = event
-      target.remove()
-    })
-
-   this._root.innerHTML = ""
+    // Clear previous content
+    this._root.innerHTML = ""
 
     // const ul = document.createElement("ul")
     // ul.className = "foods-list"
@@ -100,8 +94,16 @@ class Foods{
      fragement.appendChild(this.createElement(item))
   })
 
-   // this._root.appendChild(ul)
+    // this._root.appendChild(ul)
     this._root.appendChild(fragement)
+
+    // Add event listener once (after rendering)
+    // we use event delegation -> listen on root.
+    this._root.addEventListener("click", event => {
+      const { target } = event
+      target.remove()
+    })
+
   }
 }
 
